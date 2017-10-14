@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+
+<struts>
+	<include file="struts-default.xml" />
+	<constant name="struts.action.excludePattern" value="/dist/.*?" />
+	<constant name="struts.multipart.maxSize" value="20480000"/>
+	<package name="booklib" extends="struts-default, json-default">
+		<action name="hello" class="booklib.HelloWorld">
+			<result>/HelloWorld.jsp</result>
+		</action>
+		
+		<action name="addentry" class="booklib.HelloWorld" method="addEntry">
+			<result>/showEntry.jsp</result>
+		</action>
+		
+		<action name="dataBook" class="booklib.dataBook">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="addBook" class="booklib.addBook">
+			<result name="success">/pages/result/resultAddBook.jsp</result>
+			<result name="NoAuthor">/pages/result/resultAddBook.jsp</result>
+			<result name="error">/pages/result/resultAddBook.jsp</result>
+		</action>
+
+		<action name="delBook" class="booklib.delBook">
+			<result name="success">/pages/result/resultTableBook.jsp</result>
+			<result name="error">/pages/result/resultTableBook.jsp</result>
+		</action>
+
+		<action name="showBook" class="booklib.showBook">
+			<result name="success">/pages/operations/showBook.jsp</result>
+			<result name="error">/pages/result/resultTableBook.jsp</result>
+		</action>		
+
+		<action name="updBookPreLoad" class="booklib.updBook" method="loadBookInfo">
+			<result name="success">/pages/operations/updBook.jsp</result>
+			<result name="error">/pages/result/resultTableBook.jsp</result>
+		</action>	
+		
+		<action name="updBook" class="booklib.updBook" method="updBook">
+			<result name="success">/pages/result/resultAddBook.jsp</result>
+			<result name="error">/pages/result/resultAddBook.jsp</result>
+		</action>	
+
+		<action name="addAuthor" class="booklib.addAuthor">
+			<result name="success">/pages/result/resultAddAuthor.jsp</result>
+			<result name="error">/pages/result/resultAddAuthor.jsp</result>
+		</action>
+		
+		<action name="selectAuthor" class="booklib.selectAuthor">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="dataBenzi" class="booklib.dataBenzi">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="delBenzi" class="booklib.delBenzi">
+			<result name="success">/pages/result/resultTableBook.jsp</result>
+			<result name="error">/pages/result/resultTableBook.jsp</result>
+		</action>	
+		
+        <action name="addBenzi" class="booklib.addBenzi">  
+            <!-- 配置fileUpload拦截器 -->  
+            <interceptor-ref name="fileUpload">  
+                <!-- 配置允许上传的文件类型-->  
+                <param name="allowedTypes">image/x-ms-bmp,image/jpeg,image/gif,image/png,image/x-png,application/excel,application/vnd.ms-excel</param>   
+                <!-- 配置允许上传的文件大小 -->  
+                <param name="maximumSize">20480000</param>  
+            </interceptor-ref>  
+            <interceptor-ref name="defaultStack"></interceptor-ref>  
+            <!-- 配置上传文件的保存的相对路径 -->  
+            <param name="savePath">/uploads/covers</param>  
+            <!-- 配置逻辑视图和实际资源的对应关系 -->  
+            <result name="success">/pages/result/resultAddBenzi.jsp</result>  
+            <result name="error">/pages/result/resultAddBenzi.jsp</result>  
+        </action>
+
+		<action name="updBenziPreLoad" class="booklib.updBenzi" method="loadBenziInfo">
+			<result name="success">/pages/operations/updBenzi.jsp</result>
+			<result name="error">/pages/result/resultTableBook.jsp</result>
+		</action>
+		
+        <action name="updBenzi" class="booklib.updBenzi" method="updBenzi">  
+            <!-- 配置fileUpload拦截器 -->  
+            <interceptor-ref name="fileUpload">  
+                <!-- 配置允许上传的文件类型-->  
+                <param name="allowedTypes">image/x-ms-bmp,image/jpeg,image/gif,image/png,image/x-png,application/excel,application/vnd.ms-excel</param>   
+                <!-- 配置允许上传的文件大小 -->  
+                <param name="maximumSize">20480000</param>  
+            </interceptor-ref>  
+            <interceptor-ref name="defaultStack"></interceptor-ref>  
+            <!-- 配置上传文件的保存的相对路径 -->  
+            <param name="savePath">/uploads/covers</param>  
+            <!-- 配置逻辑视图和实际资源的对应关系 -->
+            <result name="success">/pages/result/resultAddBenzi.jsp</result>  
+            <result name="error">/pages/result/resultAddBenzi.jsp</result>  
+        </action>
+        
+		<action name="showBenzi" class="booklib.showBenzi">
+			<result name="success">/pages/operations/showBenzi.jsp</result>
+			<result name="error">/pages/result/resultTableBook.jsp</result>
+		</action>   
+
+	</package>
+</struts>
