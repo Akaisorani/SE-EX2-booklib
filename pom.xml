@@ -3,7 +3,7 @@
   <groupId>SE2-booklib</groupId>
   <artifactId>SE2-booklib</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>war</packaging> 
   <properties>  
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
   </properties>
